@@ -1,0 +1,16 @@
+route:
+ group_by: [cluster]
+ # If an alert isn't caught by a route, send it slack.
+ receiver: slack_general
+ routes:
+  # Send severity=slack alerts to slack.
+  - match:
+      severity: slack
+    receiver: slack_general
+
+receivers:
+- name: slack_general
+  slack_configs:
+  - api_url: https://hooks.slack.com/services/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
+    channel: '#general'
+    text: "alert needing your attention"
